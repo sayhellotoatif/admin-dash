@@ -1,0 +1,24 @@
+{
+  "build": {
+    "env": {
+      "REACT_ROUTER_SERVER_ROUTING": "true"
+    }
+  },
+  "functions": {
+    "build/server/index.js": {
+      "runtime": "vercel/node@2",
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    {
+      "src": "/_assets/(.*)",
+      "dest": "/build/client/_assets/$1"
+    },
+    {
+      "src": "/.*",
+      "dest": "/build/server/index.js"
+    }
+  ]
+}
